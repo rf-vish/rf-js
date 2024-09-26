@@ -43,9 +43,9 @@ jQuery(function ($) {
 
     // Get additional attributes from the form
     const contactForm = $('#contactForm');
-    const labelID = contactForm.getAttribute('labelid');
-    const campaignID = contactForm.getAttribute('campaignid');
-    const redirectUrl = contactForm.getAttribute('redirect');
+    // const labelID = contactForm.getAttribute('labelid');
+    // const campaignID = contactForm.getAttribute('campaignid');
+    // const redirectUrl = contactForm.getAttribute('redirect');
 
     // Collect form data for submission
     // const formData = {
@@ -66,9 +66,11 @@ jQuery(function ($) {
     let formData = contactForm.serialize();
 
     // Add additional fields not present in the form
-    formData += '&noteTimeStamps[]=' + todayDate() +
-      '&contactTag=' + labelID +
-      '&campaign=' + campaignID;
+    // formData += '&noteTimeStamps[]=' + todayDate() +
+    //   '&contactTag=' + labelID +
+    //   '&campaign=' + campaignID;
+
+    formData += '&noteTimeStamps[]=' + todayDate();
 
     
 
