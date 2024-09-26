@@ -63,14 +63,22 @@ jQuery(function ($) {
     //   sentFrom: 'customPage',
     // };
 
-    let formData = contactForm.serialize();
+    // let formData = contactForm.serialize();
+     const formData = 'firstName=' + document.getElementById('firstName').value +
+            '&lastName=' + document.getElementById('lastName').value +
+            '&email=' + document.getElementById('email').value +
+            '&phone=' + document.getElementById('phone').value +
+            //'&note=' + document.getElementById('note').value +
+            '&noteTimeStamps[]=' + todayDate();
+            // '&contactTag=' + labelID +
+            // '&campaign=' + campaignID;
 
     // Add additional fields not present in the form
     // formData += '&noteTimeStamps[]=' + todayDate() +
     //   '&contactTag=' + labelID +
     //   '&campaign=' + campaignID;
 
-    formData += '&noteTimeStamps[]=' + todayDate();
+    // formData += '&noteTimeStamps[]=' + todayDate();
 
     
 
