@@ -2,12 +2,10 @@ jQuery(function ($) {
   // Parse the URL to extract userId, resourceID, and contactId
   const parsedUrl = new URL(window.location.href);
   const params = parsedUrl.search.split('/');
-  const userId = params[2]; // Extract the userId
-  const resourceID = params[3]; // Extract the resourceID
-  const contactId = params[4]; // Extract the contactId
+  const userId = params[1]; // Extract the userId
+  const resourceID = params[2]; // Extract the resourceID
+  const contactId = params[3]; // Extract the contactId
 
-  console.log('params: ' + params);
-  console.log('firstParam: ' + params[1]);
   console.log('User ID: ' + userId);
   console.log('Resource ID: ' + resourceID);
   console.log('Contact ID: ' + contactId);
