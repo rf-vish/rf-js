@@ -49,7 +49,7 @@ jQuery(function ($) {
 
     // Submit the form data to the API
     $.ajax({
-      url: 'https://apiv2.rapidfunnel.com/v2/submit-contact-form', // Replace with your submission API endpoint
+      url: 'https://apiv2.rapidfunnel.com/v2/contact-details/' + contactId, // Replace with your submission API endpoint
       method: 'POST',
       contentType: 'application/json',
       data: JSON.stringify(formData), // Convert form data to JSON
