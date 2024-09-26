@@ -42,7 +42,7 @@ jQuery(function ($) {
     $(':button').attr('disabled', true);
 
     // Get additional attributes from the form
-    const contactForm = document.getElementById('contactForm');
+    const contactForm = $('#contactForm');
     const labelID = contactForm.getAttribute('labelid');
     const campaignID = contactForm.getAttribute('campaignid');
     const redirectUrl = contactForm.getAttribute('redirect');
