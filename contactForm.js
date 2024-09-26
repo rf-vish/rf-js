@@ -1,7 +1,7 @@
 jQuery(function ($) {
   // Parse the URL to extract userId, resourceID, and contactId
   const parsedUrl = new URL(window.location.href);
-  const params = parsedUrl.pathname.split('/');
+  const params = parsedUrl.search.split('/');
   const userId = params[2]; // Extract the userId
   const resourceID = params[3]; // Extract the resourceID
   const contactId = params[4]; // Extract the contactId
