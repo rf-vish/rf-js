@@ -5,6 +5,7 @@ jQuery(function ($) {
   const userId = params[2]; // Extract the userId
   const resourceID = params[3]; // Extract the resourceID
   const contactId = params[4]; // Extract the contactId
+  alert(userId);
 
   // If contactId exists, make an API call to get contact details
   if (contactId) {
