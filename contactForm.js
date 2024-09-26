@@ -5,7 +5,9 @@ jQuery(function ($) {
   const userId = params[2]; // Extract the userId
   const resourceID = params[3]; // Extract the resourceID
   const contactId = params[4]; // Extract the contactId
-  
+
+  console.log('params: ' + params);
+  console.log('firstParam: ' + params[1]);
   console.log('User ID: ' + userId);
   console.log('Resource ID: ' + resourceID);
   console.log('Contact ID: ' + contactId);
