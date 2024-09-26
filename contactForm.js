@@ -12,6 +12,7 @@ jQuery(function ($) {
 
   // If contactId exists, make an API call to get contact details
   if (contactId) {
+    $('#email').hide();
     $.get(
       'https://apiv2.rapidfunnel.com/v2/contact-details/' + contactId,
       function (response) {
