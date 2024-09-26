@@ -48,20 +48,29 @@ jQuery(function ($) {
     const redirectUrl = contactForm.getAttribute('redirect');
 
     // Collect form data for submission
-    const formData = {
-      firstName: $('#firstName').val(),
-      lastName: $('#lastName').val(),
-      email: $('#email').val(),
-      phone: $('#phone').val(),
-      note: $('#note').val(),
-      resourceID: resourceId,
-      noteTimeStamps: [todayDate()],
-      contactTag: labelID,
-      campaign: campaignID || '',
-      resourceId: resourceId,
-      senderId: userId,
-      sentFrom: 'customPage',
-    };
+    // const formData = {
+    //   firstName: $('#firstName').val(),
+    //   lastName: $('#lastName').val(),
+    //   email: $('#email').val(),
+    //   phone: $('#phone').val(),
+    //   note: $('#note').val(),
+    //   resourceID: resourceId,
+    //   noteTimeStamps: [todayDate()],
+    //   contactTag: labelID,
+    //   campaign: campaignID || '',
+    //   resourceId: resourceId,
+    //   senderId: userId,
+    //   sentFrom: 'customPage',
+    // };
+
+    let formData = contactForm.serialize();
+
+    // Add additional fields not present in the form
+    formData += '&noteTimeStamps[]=' + todayDate() +
+      '&contactTag=' + labelID +
+      '&campaign=' + campaignID;
+
+    
 
     console.log(formData);
 
@@ -69,8 +78,13 @@ jQuery(function ($) {
     $.ajax({
       url: 'https://my.rapidfunnel.com/landing/resource/create-custom-contact',
       method: 'POST',
-      contentType: 'application/json',
-      data: JSON.stringify(formData), // Convert form data to JSON
+      dataType: "json",
+      data: {
+        formData: formData, // Send serialized form data
+        resourceId: resourceId,
+        senderId: userId,
+        sentFrom: 'customPage'
+      },
       success: function (response) {
         console.log(response);
         if (response.contactId > 0) {
