@@ -16,6 +16,11 @@ jQuery(function ($) {
       function (data) {
         const userData = data.data[0];
         console.log('userdata', userData);
+
+        if (userData.firstName) {
+          $('#firstName').text(userData.firstName);
+        }
+        
         for (var key of Object.keys(userData)) {
           localStorage.setItem(key, userData[key]);
           console.log(key);
