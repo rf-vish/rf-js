@@ -17,17 +17,10 @@ jQuery(function ($) {
         const userData = data.data[0];
         console.log('userdata', userData);
 
-        if (userData.firstName) {
-          $('#firstName').text(userData.firstName);
-        }
-
         // Loop over the userData keys
         for (const key of Object.keys(userData)) {
-          const value = userData[key]; // Cache the userData[key] value
-          const $element = $('.components--custom_' + key.toLowerCase()); // Cache the jQuery selector for reuse
-
-          // Store the value in localStorage
-          localStorage.setItem(key, value);
+          const value = userData[key];
+          const $element = $('.components--custom_' + key.toLowerCase());
 
           // If it's not the customBookingLink, set the text for the element (replace the placeholder text)
           if (key !== 'customBookingLink') {
@@ -50,7 +43,7 @@ jQuery(function ($) {
             }
           } else if (key === 'customBookingLink') {
             if (value !== '') {
-              $element.attr('href', value).text(value);
+              $element.attr('href', value);
             } else {
               $element.hide();
             }
