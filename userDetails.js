@@ -20,55 +20,54 @@ jQuery(function ($) {
         if (userData.firstName) {
           $('#firstName').text(userData.firstName);
         }
-        
-        for (var key of Object.keys(userData)) {
-          localStorage.setItem(key, userData[key]);
-          console.log(key);
-          var userKey = userData[key];
-          if (key != 'customBookingLink') {
-            $('.custom_' + key.toLowerCase()).text(userKey);
+
+        // Loop over the userData keys
+        for (const key of Object.keys(userData)) {
+          const value = userData[key]; // Cache the userData[key] value
+          const $element = $('.custom_' + key.toLowerCase()); // Cache the jQuery selector for reuse
+
+          // Store the value in localStorage
+          localStorage.setItem(key, value);
+
+          // If it's not the customBookingLink, set the text for the element (replace the placeholder text)
+          if (key !== 'customBookingLink') {
+            $element.text(value);
           }
-          if (key == 'profileImage') {
-            if (userData[key] !== '') {
-              $('.custom_' + key.toLowerCase()).attr('src', userData[key]);
+
+          if (key === 'profileImage') {
+            const imgSrc =
+              value !== ''
+                ? value
+                : 'https://rfres.com/assets/img/icon-user-default.png';
+            $element.attr('src', imgSrc);
+          } else if (key === 'email') {
+            $element.attr('href', 'mailto:' + value).text(value);
+          } else if (key === 'phoneNumber') {
+            if (value !== '') {
+              $element.attr('href', 'tel:' + value).text(value);
             } else {
-              $('.custom_' + key.toLowerCase()).attr(
-                'src',
-                'https://rfres.com/assets/img/icon-user-default.png'
-              );
+              $element.parent().hide(); // Hide the parent if phoneNumber is empty
+            }
+          } else if (key === 'customBookingLink') {
+            if (value !== '') {
+              $element.attr('href', value).text(value);
+            } else {
+              $element.hide();
             }
           }
-          if (key == 'email') {
-            $('.custom_' + key.toLowerCase()).attr(
-              'href',
-              'mailto:' + userData[key]
-            );
-          }
-          if (key === 'phoneNumber') {
-            if (userData[key] !== '') {
-              $('.custom_' + key.toLowerCase()).attr(
-                'href',
-                'tel:' + userData[key]
-              );
-            } else {
-              $('.custom_' + key.toLowerCase())
-                .parent()
-                .hide();
-            }
-          }
-          if (key == 'customBookingLink') {
-            if (userData[key] !== '') {
-              $('.custom_' + key.toLowerCase()).attr('href', userKey);
-            } else {
-              $('.custom_' + key.toLowerCase()).hide();
-            }
-          }
+
+          // Handle social links (replace href if available, otherwise hide the element)
           $('.footer-social-links a').each(function () {
-            var key = $(this).data('social');
-            if (userData.hasOwnProperty(key) && userData[key].trim() !== '') {
-              $(this).attr('href', userData[key]);
+            const socialKey = $(this).data('social');
+            if (
+              userData.hasOwnProperty(socialKey) &&
+              userData[socialKey].trim() !== ''
+            ) {
+              $(this)
+                .attr('href', userData[socialKey])
+                .text(userData[socialKey]); // Set href and text
             } else {
-              $(this).hide();
+              $(this).hide(); // Hide if the social link is empty
             }
           });
         }
