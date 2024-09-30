@@ -15,7 +15,7 @@ jQuery(function ($) {
     // $('#email').hide();
     // $('label[for="email"]').hide();
 
-    $('#email').prop('disabled', true);  // Disable the email input field
+    $('#contactEmail').prop('disabled', true);  // Disable the email input field
     $('label[for="email"]').css('color', '#aaa');
     
     $.get(
@@ -24,11 +24,11 @@ jQuery(function ($) {
         const contactData = response.data;
 
         // Populate the form with contact details
-        $('#firstName').val(contactData.firstName);
-        $('#lastName').val(contactData.lastName);
-        $('#email').val(contactData.email);
-        $('#phone').val(contactData.phone);
-        $('#note').val(contactData.note);
+        $('#contactFirstName').val(contactData.firstName);
+        $('#contactLastName').val(contactData.lastName);
+        $('#contactEmail').val(contactData.email);
+        $('#contactPhone').val(contactData.phone);
+        $('#contactNote').val(contactData.note);
       }
     ).fail(function () {
       console.error('Failed to fetch contact details.');
@@ -70,10 +70,10 @@ jQuery(function ($) {
     // };
 
     // let formData = contactForm.serialize();
-     const formData = 'firstName=' + document.getElementById('firstName').value +
-            '&lastName=' + document.getElementById('lastName').value +
-            '&email=' + document.getElementById('email').value +
-            '&phone=' + document.getElementById('phone').value +
+     const formData = 'firstName=' + document.getElementById('contactFirstName').value +
+            '&lastName=' + document.getElementById('contactLastName').value +
+            '&email=' + document.getElementById('contactEmail').value +
+            '&phone=' + document.getElementById('contactPhone').value +
             //'&note=' + document.getElementById('note').value +
             '&noteTimeStamps[]=' + todayDate();
             // '&contactTag=' + labelID +
