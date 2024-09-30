@@ -24,7 +24,7 @@ jQuery(function ($) {
         // Loop over the userData keys
         for (const key of Object.keys(userData)) {
           const value = userData[key]; // Cache the userData[key] value
-          const $element = $('.custom_' + key.toLowerCase()); // Cache the jQuery selector for reuse
+          const $element = $('.components--custom_' + key.toLowerCase()); // Cache the jQuery selector for reuse
 
           // Store the value in localStorage
           localStorage.setItem(key, value);
